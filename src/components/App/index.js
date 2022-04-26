@@ -9,22 +9,25 @@ import ErrorPage from '../ErrorPage';
 import ForgetPassword from '../ForgetPassword'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import '../../App.css'
+import { IconContext } from 'react-icons'
+
 
 function App() {
   return (
     <Router>
+      <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
         <Header />
- 
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path='/forgetpassword' element={<ForgetPassword/>}/>
+          <Route path='/forgetpassword' element={<ForgetPassword />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
- 
+
         <Footer />
+      </IconContext.Provider>
     </Router>
   );
 }

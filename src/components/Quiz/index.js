@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { QuizMarvel } from '../quizMarvel'
 import QuizOver from '../QuizOver'
+import { FaChevronRight } from 'react-icons/fa';
 
 const storedDataRef = React.createRef()
 
@@ -155,11 +156,14 @@ const Quiz = (props) => {
     : 
     (<Fragment>
       <ToastContainer />
-      <Levels />
+      <Levels
+      levelsName={levelNames}
+      quizLevel={quizLevel}
+       />
       <ProgressBar idQuestion={idQuestion} maxQuestion={maxQuestion} />
       <h2>{question}</h2>
       {options.map((option, key) => {
-        return <p key={key} className={`answerOptions ${userAnswer === option ? "selected" : ""}`} onClick={() => submitAnswer(option)}>{option} </p>
+        return <p key={key} className={`answerOptions ${userAnswer === option ? "selected" : ""}`} onClick={() => submitAnswer(option)}><FaChevronRight /> {option} </p>
       })}
 
       <button
