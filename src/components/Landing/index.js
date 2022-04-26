@@ -1,7 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react'
-import {Link,  } from 'react-router-dom'
+import React, { useRef, useEffect, useState, useContext } from 'react'
+import {Link  } from 'react-router-dom'
 
 function Landing() {
+
+
   const [btn, setBtn] = useState(false)
   const refWolerine = useRef()
 

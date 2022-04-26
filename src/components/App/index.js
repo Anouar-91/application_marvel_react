@@ -6,21 +6,25 @@ import Welcome from '../Welcome'
 import Login from '../Login'
 import Signup from '../Signup'
 import ErrorPage from '../ErrorPage';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import ForgetPassword from '../ForgetPassword'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import '../../App.css'
 
 function App() {
   return (
     <Router>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/welcome" component={Welcome} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-        <Route component={ErrorPage} />
-      </Switch>
-      <Footer></Footer>
+        <Header />
+ 
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/welcome" element={<Welcome />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path='/forgetpassword' element={<ForgetPassword/>}/>
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+ 
+        <Footer />
     </Router>
   );
 }
