@@ -1,9 +1,17 @@
 import React from 'react'
+import Stepper from 'react-stepper-horizontal';
 
 const Levels = () => {
   return (
     <div className="levelsContainer">
-        <h2 className="headingLevels">Débutant</h2>
+    <div>
+      <Stepper steps={ [
+        {title: 'Débutant'}, 
+        {title: 'Confirmé'}, 
+        {title: 'Expert'}
+        ] } 
+        activeStep={ 1 } />
+    </div>
     </div>
   )
 }
