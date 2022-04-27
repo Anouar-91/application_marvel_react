@@ -6,13 +6,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import { QuizMarvel } from '../quizMarvel'
 import QuizOver from '../QuizOver'
 import { FaChevronRight } from 'react-icons/fa';
+import ErrorBoundary from '../ErrorBoundary'
+
 
 const storedDataRef = React.createRef()
 
 const Quiz = (props) => {
-  const [levelNames, setLevelNames] = useState(["debutant", "confirme", "expert"])
+  const levelNames = ["debutant", "confirme", "expert"]
+  const maxQuestion = 10
+
   const [quizLevel, setQuizLevel] = useState(0)
-  const [maxQuestion, setMaxQuestion] = useState(10)
   const [storedQuestions, setStoredQuestions] = useState(null)
   const [question, setQuestion] = useState("")
   const [options, setOptions] = useState([])
@@ -37,7 +40,6 @@ const Quiz = (props) => {
       })
       setIsShowWelcomeMsg(false)
     }
-
   }
 
   const loadQuestions = level => {
@@ -53,6 +55,7 @@ const Quiz = (props) => {
       console.log("Pas assez de question")
     }
   }
+
   useEffect(() => {
     loadQuestions(quizLevel)
   }, [])
@@ -82,9 +85,11 @@ const Quiz = (props) => {
     setUserAnswer(option)
     setBtnDisabled(false)
   }
+
   const getPercent = (maxQuestion, ourScore) => {
     return (ourScore / maxQuestion) * 100
   }
+
   const gameOver = (percent) => {
     if(percent >= 50){
       setQuizLevel(quizLevel + 1)
@@ -105,7 +110,6 @@ const Quiz = (props) => {
     setScore(0)
     setPercent(0)
   }
-
 
   const nextQuestion = () => {
     if (idQuestion == maxQuestion - 1) {
@@ -138,21 +142,24 @@ const Quiz = (props) => {
         draggable: true,
         progress: undefined,
       });
-
     }
   }
+
   const { pseudo } = props.userData;
+
   return quizEnd
     ? 
-    <QuizOver 
-    ref={storedDataRef} 
-    levelNames={levelNames}
-    score={score}
-    maxQuestion={maxQuestion}
-    quizLevel={quizLevel}
-    percent={percent}
-    loadLevelQuestions={loadLevelQuestions}
-    />
+    <ErrorBoundary>
+      <QuizOver 
+      ref={storedDataRef} 
+      levelNames={levelNames}
+      score={score}
+      maxQuestion={maxQuestion}
+      quizLevel={quizLevel}
+      percent={percent}
+      loadLevelQuestions={loadLevelQuestions}
+      />
+    </ErrorBoundary>
     : 
     (<Fragment>
       <ToastContainer />

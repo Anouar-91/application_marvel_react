@@ -3,12 +3,12 @@ import { getAuth } from "firebase/auth"
 import 'firebase/firestore'
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 const config = {
-  apiKey: "AIzaSyDFnLmnNQnvrMI2qVoh23WsYH980ExkdVY",
-  authDomain: "marvel-quiz-a471c.firebaseapp.com",
-  projectId: "marvel-quiz-a471c",
-  storageBucket: "marvel-quiz-a471c.appspot.com",
-  messagingSenderId: "864827429717",
-  appId: "1:864827429717:web:9a9c6ec30f52a8cbcd95dc"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 const app = initializeApp(config)
